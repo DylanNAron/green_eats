@@ -32,13 +32,25 @@ class _MyHomePageState extends State<MyHomePage> {
   var carbs = [" ", "Rice", "Pasta"];
   var veggies = [" ", "Broccoli", "Spinach"];
 
+  var packaging = [" ", "Plastic", "Paper"];
+
+  var howGetFood = [" ", "Home Grown", "Walk to Store", "Drive to Store"];
+  var _howGetFoodPicked = "How?";
+
   var _proteinPicked = "Protein";
   var _carbPicked = "Carb";
   var _veggiePicked = "Veggie";
 
+  var _proteinPackaging = "Packaging";
+  var _carbPackaging = "Packaging";
+  var _veggiePackaging = "Packaging";
+
   var mealsList = [];
-  var totalProtein = 0.0;
-  var totalCalories = 0.0;
+  var totalProtein = 0.0; //
+  var totalCalories = 0.0; //
+
+  var totalRating = 0.0;
+  var totalMeals = 0;
 
   TextEditingController _controllerP;
   TextEditingController _controllerC;
@@ -64,6 +76,24 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void changeTypePPackage(int index, var macro, var arrayItems) {
+    setState(() {
+      _proteinPackaging = packaging[index];
+    });
+  }
+
+  void changeTypeCPackage(int index, var macro, var arrayItems) {
+    setState(() {
+      _carbPackaging = packaging[index];
+    });
+  }
+
+  void changeTypeVPackage(int index, var macro, var arrayItems) {
+    setState(() {
+      _veggiePackaging = packaging[index];
+    });
+  }
+
   void changeTypeC(int index, var macro, var arrayItems) {
     setState(() {
       _carbPicked = arrayItems[index];
@@ -76,6 +106,13 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void changeTypeHow(int index) {
+    setState(() {
+      _howGetFoodPicked = howGetFood[index];
+    });
+  }
+
+  //TODO get rid of
   void convertAndAdd() {
     setState(() {
       var curProtein = 0.0; //oz
@@ -119,6 +156,19 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void getRating() {
+    setState(() {
+      var curRating = 1.0;
+      totalMeals++;
+      totalRating = (totalRating + curRating) / 2;
+      mealsList.add("Meal" +
+          totalMeals.toString() +
+          " is rated " +
+          curRating.toString() +
+          " stars.");
+    });
+  }
+
   void clear() {
     setState(() {
       totalProtein = 0;
@@ -151,18 +201,36 @@ class _MyHomePageState extends State<MyHomePage> {
           },
           child: Text(_proteinPicked),
         ),
+        TextButton(
+          onPressed: () {
+            showModalBottomSheet(
+                context: context,
+                builder: (context) {
+                  return CupertinoPicker(
+                      itemExtent: 20.0,
+                      children: [for (String name in packaging) Text(name)],
+                      onSelectedItemChanged: (index) {
+                        changeTypePPackage(index, macro, arrayItems);
+                      });
+                });
+          },
+          child: Text(_proteinPackaging),
+        ),
+        /*
         Container(
           width: 200,
           height: 40,
           child: TextField(
             controller: controller,
             decoration: InputDecoration(
+                hintText: "Packaging",
                 filled: true,
                 fillColor: Colors.white,
                 focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.white))),
           ),
-        )
+        ),
+        */
       ],
     );
   }
@@ -188,18 +256,21 @@ class _MyHomePageState extends State<MyHomePage> {
           },
           child: Text(_carbPicked),
         ),
-        Container(
-          width: 200,
-          height: 40,
-          child: TextField(
-            controller: controller,
-            decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-                focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white))),
-          ),
-        )
+        TextButton(
+          onPressed: () {
+            showModalBottomSheet(
+                context: context,
+                builder: (context) {
+                  return CupertinoPicker(
+                      itemExtent: 20.0,
+                      children: [for (String name in packaging) Text(name)],
+                      onSelectedItemChanged: (index) {
+                        changeTypeCPackage(index, macro, arrayItems);
+                      });
+                });
+          },
+          child: Text(_carbPackaging),
+        ),
       ],
     );
   }
@@ -225,18 +296,46 @@ class _MyHomePageState extends State<MyHomePage> {
           },
           child: Text(_veggiePicked),
         ),
-        Container(
-          width: 200,
-          height: 40,
-          child: TextField(
-            controller: controller,
-            decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-                focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white))),
-          ),
-        )
+        TextButton(
+          onPressed: () {
+            showModalBottomSheet(
+                context: context,
+                builder: (context) {
+                  return CupertinoPicker(
+                      itemExtent: 20.0,
+                      children: [for (String name in packaging) Text(name)],
+                      onSelectedItemChanged: (index) {
+                        changeTypeVPackage(index, macro, arrayItems);
+                      });
+                });
+          },
+          child: Text(_veggiePackaging),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildRowHow() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        Text("How did you get the food?"),
+        TextButton(
+          onPressed: () {
+            showModalBottomSheet(
+                context: context,
+                builder: (context) {
+                  return CupertinoPicker(
+                      itemExtent: 20.0,
+                      children: [for (String name in howGetFood) Text(name)],
+                      onSelectedItemChanged: (index) {
+                        changeTypeHow(index);
+                      });
+                });
+          },
+          child: Text(_howGetFoodPicked),
+        ),
       ],
     );
   }
@@ -248,18 +347,13 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("assets/foodbackground.png"),
-              fit: BoxFit.cover),
-        ),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               SizedBox(height: 30),
               Text(
-                'Pick your foods and the amount for each (oz)',
+                'Pick your foods and how they were packaged',
                 style: TextStyle(
                   fontSize: 20,
                 ),
@@ -271,12 +365,12 @@ class _MyHomePageState extends State<MyHomePage> {
               SizedBox(height: 20),
               _buildRowV(veggies, _controllerV, _veggiePicked),
               SizedBox(height: 20),
-              TextButton(onPressed: convertAndAdd, child: Text("Add Meal")),
+              _buildRowHow(),
+              SizedBox(height: 20),
+              TextButton(onPressed: getRating, child: Text("Add Meal")),
               TextButton(onPressed: clear, child: Text("Clear")),
               //SizedBox(height: 20),
-              Text("Total Protein: " + totalProtein.toString(),
-                  style: TextStyle(fontSize: 30)),
-              Text("Total Calories: " + totalCalories.toString(),
+              Text("Total Rating: " + totalRating.toString(),
                   style: TextStyle(fontSize: 30)),
               SizedBox(height: 20),
               Column(
