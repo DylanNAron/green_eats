@@ -10,6 +10,7 @@ class MealPage extends StatelessWidget {
 }
 */
 
+
 class MealPage extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -248,11 +249,6 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("assets/foodbackground.png"),
-              fit: BoxFit.cover),
-        ),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
