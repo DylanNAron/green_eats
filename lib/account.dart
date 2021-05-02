@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:green_eats/meal.dart';
 
 /*
 class AccountPage extends StatelessWidget {
@@ -27,39 +28,42 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  double totalRating = MealPage().theTotalRating;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // appBar: AppBar(
-        //   title: Image.asset('assets/greeneatslogo.png'),
-        // ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(height: 220),
-              Text(
-                'Hi Name',
-                textScaleFactor: 1.5,
-              ),
-              ElevatedButton(
+      // appBar: AppBar(
+      //   title: Image.asset('assets/greeneatslogo.png'),
+      // ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            SizedBox(height: 220),
+            Text(
+              'Hi Name',
+              textScaleFactor: 1.5,
+            ),
+            ElevatedButton(
                 onPressed: () {},
-                child: Text('Edit Name',
+                child: Text(
+                  'Edit Name',
                   textScaleFactor: 1.2,
-                )
+                )),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Text(
+                'Rating',
+                textScaleFactor: 1.2,
               ),
-              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                Text(
-                  'Rating',
-                  textScaleFactor: 1.2,
-                ),
-                Text('Number',
-                  textScaleFactor: 1.2,
-                ),
-              ]),
-            ],
-          ),
+              Text(
+                totalRating.toString(),
+                textScaleFactor: 1.2,
+              ),
+            ]),
+          ],
         ),
+      ),
     );
   }
 }

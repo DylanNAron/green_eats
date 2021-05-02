@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -10,13 +12,19 @@ class MealPage extends StatelessWidget {
 }
 */
 
-
 class MealPage extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return (MyHomePage(title: 'Food Tracker'));
   }
+
+  static var totalRating = 4.5;
+  double get theTotalRating {
+    return totalRating;
+  }
+
+  //double totalRating = theTo;
 }
 
 class MyHomePage extends StatefulWidget {
@@ -50,12 +58,16 @@ class _MyHomePageState extends State<MyHomePage> {
   var totalProtein = 0.0; //
   var totalCalories = 0.0; //
 
-  var totalRating = 0.0;
-  var totalMeals = 0;
+  static var totalRating = 0.0;
+  static var totalMeals = 0;
 
   TextEditingController _controllerP;
   TextEditingController _controllerC;
   TextEditingController _controllerV;
+
+  double get theTotalRating2 {
+    return totalRating;
+  }
 
   void initState() {
     super.initState();
