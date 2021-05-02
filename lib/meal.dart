@@ -19,10 +19,11 @@ class MealPage extends StatelessWidget {
     return (MyHomePage(title: 'Food Tracker'));
   }
 
-  static var totalRating = 4.5;
   double get theTotalRating {
     return totalRating;
   }
+
+  var totalRating = _MyHomePageState().theTotalRating2;
 
   //double totalRating = theTo;
 }
