@@ -29,6 +29,58 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   double totalRating = MealPage().theTotalRating;
+  TextEditingController _controller;
+  String userName = 'User Name';
+
+  void initState(){
+    super.initState();
+    _controller = TextEditingController();
+    _controller.addListener(() {
+      userName = _controller.text;
+    });
+  }
+
+  Future<void> _changeName() async {
+    _controller.text = "";
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Change Name'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                TextField(
+                  controller: _controller,
+                  decoration: InputDecoration(labelText: "New Name:"),
+                ),
+                SizedBox(height: 20),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Cancel',),
+              onPressed: () {
+                _controller.text = "";
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text('Save Name'),
+              onPressed: () {
+                setState(() {
+                  userName = _controller.text;
+                });
+                Navigator.of(context).pop();
+              },
+            ),
+          ]
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,18 +94,21 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             SizedBox(height: 220),
             Text(
-              'Hi Name',
+              'Hi '+userName,
               textScaleFactor: 1.5,
             ),
             ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  
+                  _changeName();
+                },
                 child: Text(
                   'Edit Name',
                   textScaleFactor: 1.2,
                 )),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               Text(
-                'Rating',
+                'Rating ',
                 textScaleFactor: 1.2,
               ),
               Text(
