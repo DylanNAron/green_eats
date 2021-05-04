@@ -71,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedTabIndex,
         onTap: _onItemTapped,
-        selectedItemColor: Colors.orange,
+        selectedItemColor: Colors.green,
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
@@ -88,26 +88,26 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
     );
-    // return DefaultTabController(
-    //     length: 3,
-    //     child: Scaffold(
-    //       appBar: AppBar(
-    //         title: Text(widget.title),
-    //         bottom: TabBar(
-    //           tabs: [
-    //             Tab(icon: Icon(Icons.person)),
-    //             Tab(icon: Icon(Icons.food_bank)),
-    //             Tab(icon: Icon(Icons.lightbulb)),
-    //           ],
-    //         ),
-    //       ),
-    //       body: TabBarView(
-    //         children: [
-    //           AccountPage(),
-    //           MealPage(),
-    //           EducationPage(),
-    //         ],
-    //       ),
-    //     ));
+    /*return DefaultTabController(
+        length: 3,
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text(widget.title),
+            bottom: TabBar(
+              tabs: [
+                Tab(icon: Icon(Icons.person)),
+                Tab(icon: Icon(Icons.food_bank)),
+                Tab(icon: Icon(Icons.lightbulb)),
+              ],
+            ),
+          ),
+          body: TabBarView(
+            children: [
+              AccountPage(),
+              MealPage(),
+              EducationPage(),
+            ],
+          ),
+        ));*/
   }
 }

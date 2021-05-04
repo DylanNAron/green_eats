@@ -16,6 +16,12 @@ class AccountPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return (MyHomePage(title: 'Food Tracker'));
   }
+
+  String get theUserName {
+    return userName;
+  }
+
+  var userName = _MyHomePageState().theUserName2;
 }
 
 class MyHomePage extends StatefulWidget {
@@ -31,6 +37,10 @@ class _MyHomePageState extends State<MyHomePage> {
   double totalRating = MealPage().theTotalRating;
   TextEditingController _controller;
   String userName = 'User Name';
+
+  String get theUserName2 {
+    return userName;
+  }
 
   void initState(){
     super.initState();
@@ -106,16 +116,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   'Edit Name',
                   textScaleFactor: 1.2,
                 )),
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              Text(
-                'Rating ',
-                textScaleFactor: 1.2,
-              ),
-              Text(
-                totalRating.toString(),
-                textScaleFactor: 1.2,
-              ),
-            ]),
+            Text(
+              'Rating '+ totalRating.toString(),
+              textScaleFactor: 1.2,
+            ),
           ],
         ),
       ),

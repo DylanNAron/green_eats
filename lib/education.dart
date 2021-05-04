@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:math';
+import 'package:green_eats/meal.dart';
+import 'package:green_eats/account.dart';
 
 /*
 void main() {
@@ -99,6 +101,8 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  String name = AccountPage().theUserName;
+  double totalRating = MealPage().theTotalRating;
   String selectedValue = '1star';
   var options = ['1star', '2stars', '3stars', '4stars', '5stars'];
   @override
@@ -109,6 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
       // ),
       body: Center(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Text('Hi '+ name +', your average meal rating is ' + totalRating.toString()),
           Text('1.Select Your Average Rating'),
           DropdownButton<String>(
             value: selectedValue,
