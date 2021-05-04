@@ -11,14 +11,7 @@ void main() {
 class EducationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'GreenEats',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: MyHomePage(title: 'Green Eats: Education'),
-    );
+    return (MyHomePage(title: 'Food Tracker'));
   }
 }
 
@@ -111,9 +104,9 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Image.asset('greeneatslogo.png'),
-      ),
+      // appBar: AppBar(
+      //   title: Image.asset('greeneatslogo.png'),
+      // ),
       body: Center(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Text('1.Select Your Average Rating'),

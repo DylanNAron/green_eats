@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(title: 'Green Eats'),
@@ -41,28 +41,73 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int _selectedTabIndex = 1;
+
+  @override
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedTabIndex = index;
+    });
+  }
+
+  Widget _selectTab(){
+    switch (_selectedTabIndex) {
+      case 0:
+        return AccountPage();
+      case 1:
+        return MealPage();
+      case 2:
+        return EducationPage();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-        length: 3,
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text(widget.title),
-            bottom: TabBar(
-              tabs: [
-                Tab(icon: Icon(Icons.person)),
-                Tab(icon: Icon(Icons.food_bank)),
-                Tab(icon: Icon(Icons.lightbulb)),
-              ],
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Image.asset('assets/greeneatslogo.png'),
+      ),
+      body: _selectTab(),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedTabIndex,
+        onTap: _onItemTapped,
+        selectedItemColor: Colors.orange,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Account'
           ),
-          body: TabBarView(
-            children: [
-              AccountPage(),
-              MealPage(),
-              EducationPage(),
-            ],
+          BottomNavigationBarItem(
+            icon: Icon(Icons.food_bank),
+            label: 'Meals'
           ),
-        ));
+          BottomNavigationBarItem(
+            icon: Icon(Icons.lightbulb),
+            label: 'Tips'
+          ),
+        ],
+      ),
+    );
+    // return DefaultTabController(
+    //     length: 3,
+    //     child: Scaffold(
+    //       appBar: AppBar(
+    //         title: Text(widget.title),
+    //         bottom: TabBar(
+    //           tabs: [
+    //             Tab(icon: Icon(Icons.person)),
+    //             Tab(icon: Icon(Icons.food_bank)),
+    //             Tab(icon: Icon(Icons.lightbulb)),
+    //           ],
+    //         ),
+    //       ),
+    //       body: TabBarView(
+    //         children: [
+    //           AccountPage(),
+    //           MealPage(),
+    //           EducationPage(),
+    //         ],
+    //       ),
+    //     ));
   }
 }
