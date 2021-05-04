@@ -103,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            SizedBox(height: 220),
+            SizedBox(height: 150),
             Text(
               'Hi ' + userName,
               textScaleFactor: 1.5,
@@ -116,6 +116,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   'Edit Name',
                   textScaleFactor: 1.2,
                 )),
+              SizedBox(height: 50),
+            Image.asset('assets/Profile-01.png', 
+              height: 200,
+              width: 200,),
+            SizedBox(height: 50),
             Text(
               'Rating ' + totalRating.toString(),
               textScaleFactor: 1.2,
