@@ -36,13 +36,13 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   double totalRating = MealPage().theTotalRating;
   TextEditingController _controller;
-  String userName = 'User Name';
+  static String userName = 'User Name';
 
   String get theUserName2 {
     return userName;
   }
 
-  void initState(){
+  void initState() {
     super.initState();
     _controller = TextEditingController();
     _controller.addListener(() {
@@ -57,37 +57,38 @@ class _MyHomePageState extends State<MyHomePage> {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Change Name'),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                TextField(
-                  controller: _controller,
-                  decoration: InputDecoration(labelText: "New Name:"),
+            title: Text('Change Name'),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: <Widget>[
+                  TextField(
+                    controller: _controller,
+                    decoration: InputDecoration(labelText: "New Name:"),
+                  ),
+                  SizedBox(height: 20),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: Text(
+                  'Cancel',
                 ),
-                SizedBox(height: 20),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              child: Text('Cancel',),
-              onPressed: () {
-                _controller.text = "";
-                Navigator.of(context).pop();
-              },
-            ),
-            TextButton(
-              child: Text('Save Name'),
-              onPressed: () {
-                setState(() {
-                  userName = _controller.text;
-                });
-                Navigator.of(context).pop();
-              },
-            ),
-          ]
-        );
+                onPressed: () {
+                  _controller.text = "";
+                  Navigator.of(context).pop();
+                },
+              ),
+              TextButton(
+                child: Text('Save Name'),
+                onPressed: () {
+                  setState(() {
+                    userName = _controller.text;
+                  });
+                  Navigator.of(context).pop();
+                },
+              ),
+            ]);
       },
     );
   }
@@ -104,12 +105,11 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             SizedBox(height: 220),
             Text(
-              'Hi '+userName,
+              'Hi ' + userName,
               textScaleFactor: 1.5,
             ),
             ElevatedButton(
                 onPressed: () {
-                  
                   _changeName();
                 },
                 child: Text(
@@ -117,7 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   textScaleFactor: 1.2,
                 )),
             Text(
-              'Rating '+ totalRating.toString(),
+              'Rating ' + totalRating.toString(),
               textScaleFactor: 1.2,
             ),
           ],

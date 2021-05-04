@@ -38,11 +38,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var proteins = [" ", "Chicken", "Beef"];
-  var carbs = [" ", "Rice", "Pasta"];
-  var veggies = [" ", "Broccoli", "Spinach"];
+  var proteins = ["None", "Chicken", "Beef", "Fish", "Beans"];
+  var carbs = ["None", "Rice", "Pasta", "Potatoe"];
+  var veggies = ["None", "Broccoli", "Spinach", "Carrots", "Green Beans"];
 
-  var packaging = [" ", "Plastic", "Paper"];
+  var packaging = ["None", "Plastic", "Paper"];
 
   var howGetFood = [" ", "Home Grown", "Walk to Store", "Drive to Store"];
   var _howGetFoodPicked = "How?";
@@ -126,55 +126,61 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  //TODO get rid of
-  void convertAndAdd() {
-    setState(() {
-      var curProtein = 0.0; //oz
-      var curCalories = 0.0; //cal
-      switch (_proteinPicked) {
-        case "Chicken":
-          curProtein += double.parse(_controllerP.text) * 8;
-          curCalories += double.parse(_controllerP.text) * 47;
-          break;
-        case "Beef":
-          curProtein += double.parse(_controllerP.text) * 7;
-          curCalories += double.parse(_controllerP.text) * 71;
-          break;
-      }
-      switch (_veggiePicked) {
-        case "Broccoli":
-          curCalories += double.parse(_controllerV.text) * 10;
-          break;
-        case "Spinach":
-          curCalories += double.parse(_controllerV.text) * 7;
-          break;
-      }
-      switch (_carbPicked) {
-        case "Rice":
-          curCalories += double.parse(_controllerC.text) * 37;
-          break;
-        case "Pasta":
-          curCalories += double.parse(_controllerC.text) * 38;
-          break;
-      }
-      var size = mealsList.length + 1;
-      totalProtein += curProtein;
-      totalCalories += curCalories;
-      mealsList.add("Meal" +
-          size.toString() +
-          " is " +
-          curProtein.toString() +
-          "grams of Protein & " +
-          curCalories.toString() +
-          " calories.");
-    });
-  }
-
   void getRating() {
     setState(() {
-      var curRating = 1.0;
+      var curRating = 4.5;
+      switch (_proteinPicked) {
+        case "Beef":
+          curRating -= 1.0;
+          break;
+        case "Chicken":
+          curRating -= 1.0;
+          break;
+        case "Fish":
+          curRating -= .5;
+          break;
+      }
+      switch (_proteinPackaging) {
+        case "Plastic":
+          curRating -= .5;
+          break;
+        case "Paper":
+          curRating -= .25;
+          break;
+      }
+      switch (_carbPackaging) {
+        case "Plastic":
+          curRating -= .5;
+          break;
+        case "Paper":
+          curRating -= .25;
+          break;
+      }
+      switch (_veggiePackaging) {
+        case "Plastic":
+          curRating -= .5;
+          break;
+        case "Paper":
+          curRating -= .25;
+          break;
+      }
+
+      switch (_howGetFoodPicked) {
+        case "Drive to Store":
+          curRating -= .75;
+          break;
+        case "Home Grown":
+          curRating += .5;
+          break;
+      }
+
       totalMeals++;
-      totalRating = (totalRating + curRating) / 2;
+      if (totalMeals == 1) {
+        totalRating = curRating;
+      } else {
+        totalRating = (totalRating + curRating) / 2;
+      }
+
       mealsList.add("Meal" +
           totalMeals.toString() +
           " is rated " +
@@ -185,12 +191,17 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void clear() {
     setState(() {
-      totalProtein = 0;
-      totalCalories = 0;
       mealsList = [];
-      _controllerC.text = "";
-      _controllerP.text = "";
-      _controllerV.text = "";
+
+      _howGetFoodPicked = "How?";
+
+      _proteinPicked = "Protein";
+      _carbPicked = "Carb";
+      _veggiePicked = "Veggie";
+
+      _proteinPackaging = "Packaging";
+      _carbPackaging = "Packaging";
+      _veggiePackaging = "Packaging";
     });
   }
 
