@@ -123,7 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(height: 50),
             Text(
               'Rating ' + totalRating.toString(),
-              textScaleFactor: 1.2,
+              textScaleFactor: 1.5,
             ),
           ],
         ),

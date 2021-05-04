@@ -113,8 +113,10 @@ class _MyHomePageState extends State<MyHomePage> {
       // ),
       body: Center(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Text('Hi '+ name +', your average meal rating is ' + totalRating.toString()),
-          Text('1.Select Your Average Rating'),
+          Text('Hi '+ name +', your average meal rating is ' + totalRating.toString(), textScaleFactor: 1.2,),
+          SizedBox(height: 20),
+          Text('1.Select Your Average Rating', textScaleFactor: 1.2,),
+          SizedBox(height: 10),
           DropdownButton<String>(
             value: selectedValue,
             onChanged: (String val) {
@@ -128,6 +130,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     value: item))
                 .toList(),
           ),
+          SizedBox(height: 10),
           ElevatedButton(
               style: ElevatedButton.styleFrom(
                 primary: Colors.green,

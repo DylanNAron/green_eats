@@ -368,9 +368,9 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
+      // appBar: AppBar(
+      //   title: Text(widget.title),
+      // ),
       body: Container(
         child: Center(
           child: Column(
@@ -378,7 +378,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: <Widget>[
               SizedBox(height: 30),
               Text(
-                'Pick your foods and how they were packaged',
+                'Pick your foods and \nhow they were packaged:',
                 style: TextStyle(
                   fontSize: 20,
                 ),
