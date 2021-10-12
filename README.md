@@ -5,6 +5,12 @@ A Flutter application for tracking and educating eating eco-friendly or eating g
 # App description: 
 The goal of this app is to provide a way for users to conveniently track the environmental impacts of their diet. Users will enter their daily meals and will receive a 0 to 5 star rating based on how environmentally friendly their meal is.This rating will be based off of factors such as meat content, dairy content, etc. Users will then be able to track their points and progress and work towards the goal of environmentally conscious eating.
 
+![alt text](https://github.com/DylanNAron/green_eats/blob/main/GreenEatsPicture.png)
+
+
+![alt text](https://github.com/DylanNAron/green_eats/blob/main/GreenEatsPicture2.png)
+
+
 # Target Users: 
 Young men and women who are interested in tracking the environmental impacts of their diet. Mainly targeted towards Gen-Z and Millennials given that climate change is one of the top issues of this generation.
 
